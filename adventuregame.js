@@ -12,6 +12,8 @@ var initializer = new Initializer();
 
 InitializeGame();
 
+// test commit
+
 console.log("Game initialized");
 
 // Get the input field
