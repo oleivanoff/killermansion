@@ -1,0 +1,64 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Oxygen;
+  }
+  
+  h1 {
+    color: white;
+    margin-left: 10px;
+    font-family: Oxygen;
+    font-size: 20x;
+  }
+
+  .command {
+    color: rgb(255, 255, 255);
+    font-family: Oxygen;
+    font-size: 12px;
+    margin-left: 20px;
+    width: 100%;
+  }
+
+  .divider {
+    height: 20px;
+    width: 100%;
+    
+  }
+  .scroller {
+    overflow: auto;
+    height: 600px;
+    display: flex;
+    flex-direction: column-reverse;
+    }
+    
+    .scroller .scroller-content .item {
+      height: 20px;
+      transform: translateZ(0); /* fixes a bug in Safari iOS where the scroller doesn't update */
+    }
+
+  .outputtext {
+    color: rgb(255, 255, 255);
+    font-family: Oxygen;
+    font-size: 16px;
+    margin-left: 20px;
+		height:200px;
+		width:100%;
+		/* background-color:#CCC; */		
+    overflow-y:auto;
+		float:left;
+		position:relative;
+		margin-left:-5px;
+  }
+
+  .input {
+    background-color: black;
+    color: lightgreen;
+    font-family: Oxygen;
+    font-size: 16px;
+    /* border: 1px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid; */
+    width: 50%;
+    height: 24px;
+    margin-left: 20px;
+  }
