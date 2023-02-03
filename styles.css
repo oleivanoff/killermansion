@@ -1,22 +1,36 @@
 body {
     background-color: black;
     color: white;
-    font-family: Oxygen;
+    font-family: Oxygen Mono;
   }
   
   h1 {
     color: white;
     margin-left: 10px;
-    font-family: Oxygen;
-    font-size: 20x;
+    font-family: "Oxygen Mono", monospace;
+    font-size: 24x;
+  }
+
+  .header  {
+    background-color: black;
+    color: white;
+    font-family: Oxygen Mono;
+    font-size: 14px;
+    margin-left: 20px;
+    width: 100%;
+    position: sticky;
+    top: 0;
   }
 
   .command {
     color: rgb(255, 255, 255);
-    font-family: Oxygen;
+    font-family: Oxygen Mono;
     font-size: 12px;
     margin-left: 20px;
     width: 100%;
+    border: blue;
+    border-style: solid;
+    border-width: 2px;
   }
 
   .divider {
@@ -26,7 +40,7 @@ body {
   }
   .scroller {
     overflow: auto;
-    height: 600px;
+    height: 400px;
     display: flex;
     flex-direction: column-reverse;
     }
@@ -38,7 +52,7 @@ body {
 
   .outputtext {
     color: rgb(255, 255, 255);
-    font-family: Oxygen;
+    font-family: Oxygen Mono;
     font-size: 16px;
     margin-left: 20px;
 		height:200px;
@@ -53,7 +67,7 @@ body {
   .input {
     background-color: black;
     color: lightgreen;
-    font-family: Oxygen;
+    font-family: Oxygen Mono;
     font-size: 16px;
     /* border: 1px;
     border-color: rgb(255, 255, 255);
