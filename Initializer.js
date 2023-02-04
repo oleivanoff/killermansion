@@ -53,7 +53,7 @@ function InitializeGame() {
     var tObj = new AdvObject("B5", "Fireplace", "Object", "L1", 0, 0, 0, "A13", 0, "There are ashes from a recent fire, but it seems the chimney is blocked now. If you lit a fire you will probably set the house on fire and choke to death.", new Array());
     window.Game.AdvObjects.push(tObj);
     // add using the wooden stick on the barred drain in the cellar will give yo the hacksaw
-    var tObj = new AdvObject("B6", "Wooden stick", "Object", "L1", 1, 1, "A44", "A43", 0, "", new Array("B15", "A25"));
+    var tObj = new AdvObject("B6", "Wooden stick", "Object", "L1", 1, 1, "A44", "A43", 0, "", new Array("A25", "B15"));
     window.Game.AdvObjects.push(tObj);
     var tObj = new AdvObject("B7", "Old Iron Key", "Object", "L1", 0, 1, 0, "A3", 0, "", new Array("A4", "E1"));
     window.Game.AdvObjects.push(tObj);
@@ -73,7 +73,7 @@ function InitializeGame() {
     window.Game.AdvObjects.push(tObj);
     var tObj = new AdvObject("B15", "Barred drain hole", "Object", "L3", 0, 0, 0, "A27", 0, "", new Array());
     window.Game.AdvObjects.push(tObj);
-    var tObj = new AdvObject("B16", "Hacksaw", "Object", "L3", 1, 1, 0, 0, 0, "It's a hacksaw. It's not very big, but it looks sharp. There are dried meat threads on the blade...", new Array("A41", "B21"));
+    var tObj = new AdvObject("B16", "Hacksaw", "Object", "L3", 1, 1, 0, "A45", 0, "It's a broken hacksaw...", new Array("A41", "B21"));
     window.Game.AdvObjects.push(tObj);
     var tObj = new AdvObject("B17", "Small windows", "Object", "L2", 0, 0, 0, 0, 0, "The windows are small and high up. You can't reach them from the ground. You realize it's impossible to squeeze out through them", new Array());
     window.Game.AdvObjects.push(tObj);
@@ -141,7 +141,7 @@ function InitializeGame() {
     window.Game.Actions.push(tAct);
     var tAct = new Action("A40", "You examine all the delivery uniforms. You are almost done when you can't believe your luck. In one of the inner pockets you find a cell phone!", "examineaction", 0, "B19", "B11", 0, 0, 0);
     window.Game.Actions.push(tAct);
-    var tAct = new Action("A41", "You use the hacksaw on the barred window. It breaks the saw!", "usecombo", 0, "B21", 0, 0, 0, "A42");
+    var tAct = new Action("A41", "You use the hacksaw on the barred window. It breaks the saw!", "usecombo", 0, "B16", 0, 0, 0, "A46");
     window.Game.Actions.push(tAct);
     var tAct = new Action("A42", 0, "cbutext", "You examine the broken hacksaw. It's useless now.", "B16", 0, 0, 0, 0);
     // A43 It's a thin wooden stick about 20 centimeters long.
@@ -149,6 +149,10 @@ function InitializeGame() {
     window.Game.Actions.push(tAct);
     // A44 remove the examine action on the flowers
     var tAct = new Action("A44", "", "examineaction", 0, "B3", 0, 0, 0, 0);
+    window.Game.Actions.push(tAct);
+    var tAct = new Action("A45", "The hacksaw is not very big, but it looks sharp. There are dried meat threads on the blade...", 0, 0, 0, 0, 0, 0, 0);
+    window.Game.Actions.push(tAct);
+    var tAct = new Action("A46", "", "examineaction", 0, "B16", 0, 0, 0, 0);
     window.Game.Actions.push(tAct);
 
 }

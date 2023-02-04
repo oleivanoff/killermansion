@@ -2,12 +2,14 @@ body {
     background-color: black;
     color: white;
     font-family: Oxygen Mono;
+    margin-left: 20px;
+    width: 75%;
   }
   
   h1 {
     color: white;
-    margin-left: 10px;
     font-family: "Oxygen Mono", monospace;
+    margin-left: 20px;
     font-size: 24x;
   }
 
@@ -22,15 +24,20 @@ body {
     top: 0;
   }
 
+  .emphasize {
+    color: rgb(255, 0, 0);
+    font-family: Oxygen Mono;
+    font-size: 16px;
+    margin-left: 0px;
+    width: 100%;
+  }
+
   .command {
     color: rgb(255, 255, 255);
     font-family: Oxygen Mono;
-    font-size: 12px;
+    font-size: 16px;
     margin-left: 20px;
     width: 100%;
-    border: blue;
-    border-style: solid;
-    border-width: 2px;
   }
 
   .divider {
@@ -39,6 +46,7 @@ body {
     
   }
   .scroller {
+    margin-left: 20px;
     overflow: auto;
     height: 400px;
     display: flex;
@@ -46,6 +54,7 @@ body {
     }
     
     .scroller .scroller-content .item {
+      margin-left: 20px;
       height: 20px;
       transform: translateZ(0); /* fixes a bug in Safari iOS where the scroller doesn't update */
     }
@@ -64,15 +73,19 @@ body {
 		margin-left:-5px;
   }
 
-  .input {
+  input {
     background-color: black;
     color: lightgreen;
     font-family: Oxygen Mono;
-    font-size: 16px;
+    font-size: 18px;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+
     /* border: 1px;
     border-color: rgb(255, 255, 255);
     border-style: solid; */
     width: 50%;
-    height: 24px;
+    height: 30px;
     margin-left: 20px;
   }

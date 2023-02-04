@@ -12,18 +12,18 @@ var initializer = new Initializer();
 
 InitializeGame();
 
-// test commit
-
 console.log("Game initialized");
 
 // Get the input field
 let inputField = document.getElementById("userCommand");
 
 let currentLocation = findLocationByID("L1");
+// AddToInventory(findObjectByID("B16"));
 
-writeText("You are Paxton the Pizza person - You wake up on the floor with a hurting head. The last thing you remember is driving up the driveway to a remote mansion to deliver pizzas.<br/>")
-writeText("You rang the doorbell, and noticed something that looked a lot like blood seeping out under the huge main door.")
-writeText("Too late you noticed a shadow behind you before something hit the back of your head very hard...<br/>")
+writeText("You are Paxton the Pizza person - You wake up on the floor with a hurting head. The last thing you remember is driving up the driveway to a remote mansion to deliver pizzas.<br/>");
+writeText("You rang the doorbell, and noticed something that looked a lot like blood seeping out under the huge main door.");
+writeText("Too late you noticed a shadow behind you before something hit the back of your head very hard...<br/>");
+writeText("You have to get out of here before this maniac comes back!<br/>");
 
 EnterLocation(currentLocation);
 
@@ -32,6 +32,17 @@ function WriteInventory() {
     inventory.forEach(function (obj) {
         this.writeText(obj.name + "<br/>");
     });
+}
+
+function findObjectByID(id) {
+    let robj = null;
+    window.Game.AdvObjects.forEach(function (obj) {
+        if (obj.id == id) {
+            robj = obj;
+        }
+    });
+
+    return robj;
 }
 
 function AddToInventory(object) {
@@ -81,6 +92,8 @@ function look() {
 
 inputField.addEventListener("keydown", function (event) {
     // Check if the key pressed was the Enter key
+    // start a timer at first command for one hour
+
     if (event.key === "Enter") {
         // Get the value of the input field
         let inputValue = inputField.value;
@@ -186,7 +199,7 @@ inputField.addEventListener("keydown", function (event) {
                         // loop through actions
                         window.Game.Actions.forEach(function (act) {
                             // does an action exist and is the combo of objects correct?
-                            console.log(act.id + " " + fobj.usecombo[0] + " " + fobj2.id + " " + fobj.usecombo[1]);
+                            // console.log(act.id + " " + fobj.usecombo[0] + " " + fobj2.id + " " + fobj.usecombo[1]);
                             if (act.id == fobj.usecombo[0] && fobj.usecombo[1] == fobj2.id) {
                                 doAction(act);
                                 somethinghappens = true;
