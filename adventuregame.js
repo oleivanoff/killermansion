@@ -16,6 +16,8 @@ console.log("Game initialized");
 
 // Get the input field
 let inputField = document.getElementById("userCommand");
+let playercommands = new Array();
+let playercommandlocation = 0;
 
 let currentLocation = findLocationByID("L1");
 // AddToInventory(findObjectByID("B16"));
@@ -90,20 +92,47 @@ function look() {
     });
 }
 
-inputField.addEventListener("keydown", function (event) {
-    // Check if the key pressed was the Enter key
+inputField.addEventListener("keyup", function (event) {
+
     // start a timer at first command for one hour
 
-    if (event.key === "Enter") {
+    // Check if the key pressed was arrow up
+    if (event.key == 38 || event.key == "ArrowUp") {
+        // fill in inputfield with last command
+        if (playercommands.length > 0 && playercommandlocation < playercommands.length) {
+            playercommandlocation++;
+            console.log(playercommandlocation);
+            if (playercommandlocation <= playercommands.length) {
+                inputField.value = playercommands[playercommands.length - playercommandlocation];
+            }
+        }
+    }
+    // check if key pressed was arrow down
+    if (event.key == 40 || event.key == "ArrowDown") {
+        // fill in inputfield with next command
+        if (playercommandlocation > 1) {
+            playercommandlocation--;
+            console.log(playercommandlocation);
+            inputField.value = playercommands[playercommands.length - playercommandlocation];
+        }
+    }
+
+    // Check if the key pressed was the Enter key
+    if (event.key == 13 || event.key == "Enter") {
         // Get the value of the input field
         let inputValue = inputField.value;
-        inputField.value = "";
+        playercommandlocation = 0;
+        // save command to array
+        playercommands.push(inputValue);
 
+        inputField.value = "";
+        let commandfound = false;
         // Do something with the input value
         let cmd = (findCommand(inputValue));
         console.log(cmd);
         if (cmd != "") {
             if (cmd == "examine") {
+                commandfound = true;
                 let fobj = findObject(inputValue)[0];
                 console.log(findObject(inputValue)[0]);
                 if (fobj != null) {
@@ -130,9 +159,11 @@ inputField.addEventListener("keydown", function (event) {
                 }
             }
             if (cmd == "look") {
+                commandfound = true;
                 look();
             }
             if (cmd == "take") {
+                commandfound = true;
                 let fobj = findObject(inputValue)[0];
                 if (fobj != null) {
 
@@ -150,6 +181,7 @@ inputField.addEventListener("keydown", function (event) {
                 }
             }
             if (cmd == "inventory") {
+                commandfound = true;
                 inventory();
             }
             /* if (cmd == "drop") {
@@ -169,6 +201,7 @@ inputField.addEventListener("keydown", function (event) {
                 }
             } */
             if (cmd == "use") {
+                commandfound = true;
                 let somethinghappens = false;
                 let fobj = findObject(inputValue)[0];
                 let fobj2 = null;
@@ -243,6 +276,7 @@ inputField.addEventListener("keydown", function (event) {
                 }
             }
             if (cmd == "go") {
+                commandfound = true;
                 let fexit = findExit(inputValue);
                 if (fexit != null) {
                     if (fexit.hidden == 0 && fexit.canbeused == 1) {
@@ -264,11 +298,15 @@ inputField.addEventListener("keydown", function (event) {
                 }
             }
             if (cmd == "exits") {
+                commandfound = true;
                 writeExits();
             }
 
         }
         //console.log("Value of the input field: " + inputValue);
+        if (commandfound == false) {
+            writeText("I didn't get that... Please try again!<br/>");
+        }
     }
 });
 

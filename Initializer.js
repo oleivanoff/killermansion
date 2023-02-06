@@ -135,7 +135,7 @@ function InitializeGame() {
     window.Game.Actions.push(tAct);
     var tAct = new Action("A29", "", "examineaction", 0, "B22", 0, 0, 0, 0);
     window.Game.Actions.push(tAct);
-    var tAct = new Action("A30", "You take the flashlight. It seems handy!", 0, 0, 0, 0, 0, 0, 0);
+    var tAct = new Action("A30", "It's a nice little flashlight. It seems handy!", 0, 0, 0, 0, 0, 0, 0);
     window.Game.Actions.push(tAct);
     var tAct = new Action("A31", "It's a flashlight and it works! A little luck came your way!", 0, 0, 0, 0, 0, 0, 0);
     window.Game.Actions.push(tAct);
