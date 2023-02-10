@@ -131,7 +131,7 @@ inputField.addEventListener("keyup", function (event) {
         let cmd = (findCommand(inputValue));
         console.log(cmd);
         if (cmd != "") {
-            if (cmd == "examine") {
+            if (cmd == "examine ") {
                 commandfound = true;
                 let fobj = findObject(inputValue)[0];
                 console.log(findObject(inputValue)[0]);
@@ -162,7 +162,7 @@ inputField.addEventListener("keyup", function (event) {
                 commandfound = true;
                 look();
             }
-            if (cmd == "take") {
+            if (cmd == "take ") {
                 commandfound = true;
                 let fobj = findObject(inputValue)[0];
                 if (fobj != null) {
@@ -200,15 +200,20 @@ inputField.addEventListener("keyup", function (event) {
                     writeText("There is no such object in this location or in your bag... <br/>");
                 }
             } */
-            if (cmd == "use") {
+            if (cmd == "use ") {
                 commandfound = true;
                 let somethinghappens = false;
-                let fobj = findObject(inputValue)[0];
-                let fobj2 = null;
-                // find second object or exit
+                let foundobjects = findObject(inputValue);
+                if (foundobjects.length > 0 && foundobjects[0] != null) {
+                    let fobj = foundobjects[0];
+                }
+                if (foundobjects.length > 1 && foundobjects[1] != null) {
+                    let fobj2 = foundobjects[1];
+                }
+                // check exits    
                 if (findObject(inputValue)[1] == null) {
                     if (findExit(inputValue) == null) {
-                        // not an exit or object, could it be a special code word? liek the phoen pin code?
+                        // not an exit or object, could it be a special code word? like the phone pin code?
                         // find last word of inputvalue and compare to fobj.usecombo[1]
                         let lastWord = inputValue.split(" ").pop();
                         if (fobj.usecombo[1] == lastWord) {
@@ -223,8 +228,6 @@ inputField.addEventListener("keyup", function (event) {
                     } else {
                         fobj2 = findExit(inputValue);
                     }
-                } else {
-                    fobj2 = findObject(inputValue)[1];
                 }
 
                 if (fobj != null && fobj2 != null) {
@@ -275,7 +278,7 @@ inputField.addEventListener("keyup", function (event) {
                     }
                 }
             }
-            if (cmd == "go") {
+            if (cmd == "go ") {
                 commandfound = true;
                 let fexit = findExit(inputValue);
                 if (fexit != null) {
@@ -438,16 +441,16 @@ function findExit(input) {
 }
 
 function findCommand(input) {
-    // look
+    // note the extra space after some command words 
     if (input.includes("look")) { return "look" };
 
-    if (input.includes("examine")) { return "examine" };
+    if (input.includes("examine ")) { return "examine " };
 
-    if (input.includes("go")) { return "go" };
+    if (input.includes("go ")) { return "go " };
 
-    if (input.includes("use")) { return "use" };
+    if (input.includes("use ")) { return "use " };
 
-    if (input.includes("take")) { return "take" };
+    if (input.includes("take ")) { return "take " };
 
     if (input.includes("inventory")) { return "inventory" };
 
