@@ -14,11 +14,32 @@ InitializeGame();
 
 console.log("Game initialized");
 
+// make a stopwatch for one hour
+var startTime;
+var elapsedTime = 0;
+var timer;
+var timeelapsed = "";
+
+function startTimer() {
+    startTime = Date.now();
+    timer = setInterval(function () {
+        elapsedTime = Date.now() - startTime;
+        var minutes = Math.floor(elapsedTime / 60000);
+        var seconds = ((elapsedTime % 60000) / 1000).toFixed(0);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        // var minutes = Math.floor(elapsedTime / 60000);
+        // var seconds = ((elapsedTime % 60000) / 1000).toFixed(0);
+        timeelapsed = (minutes + ":" + seconds).toString();
+        document.getElementById("timer").innerHTML = timeelapsed;
+    }, 10);
+}
+
 // Get the input field
 let inputField = document.getElementById("userCommand");
 let playercommands = new Array();
 let playercommandlocation = 0;
-
+startTimer();
 let currentLocation = findLocationByID("L1");
 // AddToInventory(findObjectByID("B16"));
 
@@ -32,7 +53,7 @@ EnterLocation(currentLocation);
 function WriteInventory() {
     console.log("You are carrying: ");
     inventory.forEach(function (obj) {
-        this.writeText(obj.name + "<br/>");
+        writeText(obj.name + "<br/>");
     });
 }
 
@@ -121,6 +142,8 @@ inputField.addEventListener("keyup", function (event) {
     if (event.key == 13 || event.key == "Enter") {
         // Get the value of the input field
         let inputValue = inputField.value;
+        let fobj = null;
+        let fobj2 = null;
         playercommandlocation = 0;
         // save command to array
         playercommands.push(inputValue);
@@ -133,7 +156,7 @@ inputField.addEventListener("keyup", function (event) {
         if (cmd != "") {
             if (cmd == "examine ") {
                 commandfound = true;
-                let fobj = findObject(inputValue)[0];
+                fobj = findObject(inputValue)[0];
                 console.log(findObject(inputValue)[0]);
                 if (fobj != null) {
                     if (fobj.examineaction != 0) {
@@ -164,7 +187,7 @@ inputField.addEventListener("keyup", function (event) {
             }
             if (cmd == "take ") {
                 commandfound = true;
-                let fobj = findObject(inputValue)[0];
+                fobj = findObject(inputValue)[0];
                 if (fobj != null) {
 
                     if (fobj.originallocation == currentLocation.id) {
@@ -205,13 +228,13 @@ inputField.addEventListener("keyup", function (event) {
                 let somethinghappens = false;
                 let foundobjects = findObject(inputValue);
                 if (foundobjects.length > 0 && foundobjects[0] != null) {
-                    let fobj = foundobjects[0];
+                    fobj = foundobjects[0];
                 }
                 if (foundobjects.length > 1 && foundobjects[1] != null) {
-                    let fobj2 = foundobjects[1];
+                    fobj2 = foundobjects[1];
                 }
                 // check exits    
-                if (findObject(inputValue)[1] == null) {
+                if (foundobjects.length <= 1) {
                     if (findExit(inputValue) == null) {
                         // not an exit or object, could it be a special code word? like the phone pin code?
                         // find last word of inputvalue and compare to fobj.usecombo[1]
