@@ -141,7 +141,7 @@ inputField.addEventListener("keyup", function (event) {
     // Check if the key pressed was the Enter key
     if (event.key == 13 || event.key == "Enter") {
         // Get the value of the input field
-        let inputValue = inputField.value;
+        let inputValue = inputField.value.toLowerCase();
         let fobj = null;
         let fobj2 = null;
         playercommandlocation = 0;
@@ -151,6 +151,7 @@ inputField.addEventListener("keyup", function (event) {
         inputField.value = "";
         let commandfound = false;
         // Do something with the input value
+        console.log("Inputvalue: " + inputValue);
         let cmd = (findCommand(inputValue));
         console.log(cmd);
         if (cmd != "") {
@@ -464,6 +465,8 @@ function findExit(input) {
 }
 
 function findCommand(input) {
+
+    console.log("finding command for " + input);
     // note the extra space after some command words 
     if (input.includes("look")) { return "look" };
 
